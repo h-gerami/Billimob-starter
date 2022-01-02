@@ -1,17 +1,25 @@
 import {UserType} from '../../Types/types';
-import {SET_ERR, SET_IS_LOADING, SET_LANG, SET_USER} from '../Actions/types';
+import {
+  SET_ERR,
+  SET_IS_LOADING,
+  SET_LANG,
+  SET_THEME,
+  SET_USER,
+} from '../Actions/types';
 
 export interface UserReducerInitType {
   loading: boolean;
   err: string;
   user: UserType;
   lang: string;
+  theme: string;
 }
 
 const INITIAL_STATE: UserReducerInitType = {
   loading: false,
   err: '',
   lang: 'en',
+  theme: 'light',
   user: {
     image: '',
     id: 0,
@@ -41,6 +49,8 @@ export default (state = INITIAL_STATE, action: any) => {
       return {...state, loading: action.payload};
     case SET_LANG:
       return {...state, lang: action.payload};
+    case SET_THEME:
+      return {...state, theme: action.payload};
     default:
       return state;
   }

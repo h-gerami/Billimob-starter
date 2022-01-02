@@ -1,7 +1,14 @@
 // import {NETWORK_ERROR} from '../../global/Errors';
 // import services from '../../global/Services';
 import {KeysOfUser, ValuesOsUser} from '../Reducers/UserReducer';
-import {SET_ERR, SET_IS_LOADING, SET_LANG, SET_USER} from './types';
+import {SET_ERR, SET_IS_LOADING, SET_LANG, SET_THEME, SET_USER} from './types';
+
+export const set_theme = (theme: string) => {
+  return {
+    type: SET_THEME,
+    payload: theme,
+  };
+};
 
 export const set_lang = (lng: string) => {
   return {

@@ -15,11 +15,12 @@ interface LoginType {
   navigation: any;
   lang: string;
   set_lang: (lang: string) => void;
+  theme: string;
 }
 
 const Login = (props: LoginType) => {
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  const {navigation, set_lang, user, lang, set_user} = props;
+  const {navigation, set_lang, user, lang, set_user, theme} = props;
   const [passWord, setPassword] = useState<string>('');
   const goHome = () => {
     navigation.reset({
@@ -39,6 +40,7 @@ const Login = (props: LoginType) => {
       <TouchableOpacity onPress={onLangPress}>
         <Text>{lang === 'en' ? 'fa' : 'en'}</Text>
       </TouchableOpacity>
+
       <View style={styles.imgWrapper}>
         <Image
           style={styles.logo}
@@ -65,19 +67,20 @@ const Login = (props: LoginType) => {
           value={passWord}
           style={{marginBottom: wp(10)}}
         />
-        <Button title={BLang(lang)?.SignIn!} onPress={goHome} />
+        <Button theme={theme} title={BLang(lang)?.SignIn!} onPress={goHome} />
       </View>
     </View>
   );
 };
 // Redux
 const mapStateToProps = (state: {
-  UserReducer: {user: UserType; lang: string};
+  UserReducer: {user: UserType; lang: string; theme: string};
 }) => {
-  const {user, lang} = state.UserReducer;
+  const {user, lang, theme} = state.UserReducer;
   return {
     user,
     lang,
+    theme,
   };
 };
 const mapDispatchToProps = {set_user, set_lang};
